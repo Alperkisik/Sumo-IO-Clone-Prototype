@@ -14,9 +14,9 @@ public class Opponent_AI : MonoBehaviour
         idling, moving, stunned, dead, hit
     }
 
-    public State state;
+    State state;
     Rigidbody rb;
-    public GameObject target_Player;
+    GameObject target_Player;
     bool enable_AI;
     float stunned_Cooldown;
     float waiting_Cooldown;
@@ -70,34 +70,6 @@ public class Opponent_AI : MonoBehaviour
             default:
                 break;
         }
-        /*
-        if (state == State.stunned)
-        {
-            stunned_Cooldown -= Time.fixedDeltaTime;
-            if (stunned_Cooldown <= 0f)
-            {
-                state = State.idling;
-                stunned_Cooldown = stunned_Duration;
-            }
-        }
-        else if (state == State.hit)
-        {
-            waiting_Cooldown -= Time.fixedDeltaTime;
-            if (waiting_Cooldown <= 0f)
-            {
-                state = State.idling;
-                waiting_Cooldown = waiting_Duration_After_Hit;
-            }
-        }
-        else if (state == State.idling) Find_Closest_Player();
-        else if (state == State.moving) 
-        {
-            if (target_Player.tag != "Player" && !Is_Target_Alive_Check())
-            {
-                state = State.idling;
-            }
-            else Go_To_Closest_Player();
-        }*/
     }
     void Find_Closest_Player()
     {
@@ -153,11 +125,6 @@ public class Opponent_AI : MonoBehaviour
 
     void Go_To_Closest_Player()
     {
-        /*Vector3 direction = (target_Player.transform.position - transform.position).normalized;
-        //direction.y = 1f;
-        Transform lookTransform = target_Player.transform;
-        lookTransform.position = new Vector3(lookTransform.position.x, 0f, lookTransform.position.z);*/
-
         transform.LookAt(target_Player.transform);
         transform.eulerAngles = new Vector3(0f, transform.eulerAngles.y, 0f);
 
